@@ -22,7 +22,194 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<nav class="navbar navbar-dark navbar-static-top" role="navigation">
+    <header class="head">
+        区块浏览器
+    </header>
+    <div class="labelhead">
+        <span ng-class="{ 'active' : data.current == 1 }" ng-click="actions.setCurrent(1)">HCSCAN</span>
+        <span ng-class="{ 'active' : data.current == 2 }" ng-click="actions.setCurrent(2)">通证</span>
+        <span ng-class="{ 'active' : data.current == 3 }" ng-click="actions.setCurrent(3)">广告记录</span>
+    </div>
+    <div ng-if="data.current == 1">
+        <div class="cardbox">
+            <div class="card">
+                <img src="./assets/img/new.png"/>
+                <div class="name">最新区块</div>
+                <div class="num">24,904,423</div>
+            </div>
+            <div class="card">
+                <img src="./assets/img/trade.png"/>
+                <div class="name">交易次数</div>
+                <div class="num">24,904,423</div>
+            </div>
+            <div class="card">
+                <img src="./assets/img/jiedian.png"/>
+                <div class="name">节点总数</div>
+                <div class="num">24,904,423</div>
+            </div>
+            <div class="card">
+                <img src="./assets/img/user.png"/>
+                <div class="name">账户总数</div>
+                <div class="num">24,904,423</div>
+            </div>
+            <div class="card">
+                <img src="./assets/img/tongzheng.png"/>
+                <div class="name">通证总数</div>
+                <div class="num">24,904,423</div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="homefoot">
+            <div class="labelnav">
+                <span ng-class="{ 'labactive' : data.currents == 1 }" ng-click="actions.setActive(1)">区块</span>
+                <span ng-class="{ 'labactive' : data.currents == 2 }" ng-click="actions.setActive(2)">交易</span>
+            </div>
+            <div ng-if="data.currents == 1">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="thead-inverse">
+                            <td>
+                                <strong>Block #</strong>
+                            </td>
+                            <td>Block Hash</td>
+                            <td>Difficulty</td>
+                            <td>Miner</td>
+                            <td>
+                                Size
+                            </td>
+                            <td>
+                                Age
+                            </td>
+                            <td>
+                                # of TXs
+                            </td>
+                            <td>
+                                Gas used
+                            </td>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="block in blocks" class="animated fadeIn">
+                                <td>
+                                    <a href="/#/block/{{ block.number }}">
+                                        <span class="btn btn-sm btn-primary"><i class="fa fa-cube"></i> {{ block.number }}</span>
+                                    </a>
+                                </td>
+                                <td><a href="/#/block/{{ block.hash }}"><span class="btn btn-sm btn-success">{{ block.hash | truncate : 12 }}</span></a></td>
+                                <td style="vertical-align:middle;">{{ block.difficulty | diffFormat }}</td>
+                                <td style="vertical-align:middle;"><a href="/#/address/{{ block.miner }}">{{ block.miner }}</a></td>
+                                <td style="vertical-align:middle;">
+                                    {{ block.size | sizeFormat }}
+                                </td>
+                                <td style="vertical-align:middle;" n-tooltips title="{{ block.timestamp * 1000 | date:'medium' }}">
+                                    {{ block.timestamp * 1000 | timestampAge }}
+                                </td>
+                                <td style="vertical-align:middle;">
+                                    {{ block.transactions.length }}
+                                </td>
+                                <td style="vertical-align:middle;">
+                                    {{ block.gasUsed | gasFormat }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+            </div>
+            <div ng-if="data.currents == 2">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="thead-inverse">
+                            <td>
+                                <strong>TX Hash</strong>
+                            </td>
+                            <td>Block #</td>
+                            <td>From</td>
+                            <td>To
+                            </td>
+                            <td>
+                                Gas Used
+                            </td>
+                            <td>
+                                Value
+                            </td>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tx in recenttransactions track by $index-async" class="animated fadeIn">
+                
+                              <td style="vertical-align:middle;"><a href="/#/tx/{{ tx.hash }}">{{ tx.hash || "" | truncate : 45 }}</a></td>
+                                <td style="vertical-align:middle;">
+                                    <a href="/#/block/{{ tx.blockNumber }}">
+                                        {{ tx.blockNumber || "" }}
+                                    </a>
+                                </td>
+                                <td style="vertical-align:middle;"><a href="/#/address/{{ tx.from }}">{{ tx.from || "" | truncate : 20 }}</a></td>
+                                <td style="vertical-align:middle;"><a href="/#/address/{{ tx.to }}">{{ tx.to || "" | truncate : 20 }}</a></td>
+                                <td style="vertical-align:middle;">
+                                    {{ tx.gas | gasFormat }}
+                                </td>
+                                <td style="vertical-align:middle;">
+                                    {{ tx.value | BigNum }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tongzheng" ng-if="data.current == 2">
+        <div class="search">
+            <img src="./assets/img/search.png"/>
+            <input type="text" placeholder="请输入智能合约地址或名称"/>
+            <img src="./assets/img/del.png"/>
+            <button type="button" class="confirm">
+                确定
+            </button>
+        </div>
+        <div class="tongcard">
+            <div class="cardli">
+                <div class="logo">
+                    <img src="./assets/img/trade.png"/>
+                </div>
+                <div>
+                    <div class="liname">HC</div>
+                    <div class="address">智能合约地址：fduetrfeeu97655jdh</div>
+                </div>
+            </div>
+            <div class="cardli">
+                <div class="logo">
+                    <img src="./assets/img/trade.png"/>
+                </div>
+                <div>
+                    <div class="liname">HC</div>
+                    <div class="address">智能合约地址：fduetrfeeu97655jdh</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="record" ng-if="data.current == 3">
+         <div class="recordcard">
+            <div class="recordli">
+                <div>HASH值：</div>
+                <div>时间：</div>
+                <div>合同ID：</div>
+                <div>企业ID：</div>
+                <div>媒体ID：</div>
+                <div>描述：</div>
+                <div>广告分发记录：</div>
+            </div>
+            <div class="recordli">
+                <div>HASH值：</div>
+                <div>时间：</div>
+                <div>合同ID：</div>
+                <div>企业ID：</div>
+                <div>媒体ID：</div>
+                <div>描述：</div>
+                <div>广告分发记录：</div>
+            </div>
+         </div>
+    </div>
+<!-- <nav class="navbar navbar-dark navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
@@ -49,7 +236,7 @@
             </div>
         </div>
     </div>
-</nav>
+</nav> -->
 
 
 <div ng-view>
@@ -88,13 +275,10 @@
 </script>
 
 <!--Services-->
-<div id="connectwarning" class="modal fade" role="dialog">
+<!-- <div id="connectwarning" class="modal fade" role="dialog">
 
-    <!-- begin AltSheets -->
     <div id="connectwarning-dialog" class="modal-dialog">
-        <!-- end AltSheets -->
 
-        <!-- Modal content-->
         <div class="modal-content">
             <center>
                 <div class="modal-header">
@@ -106,10 +290,10 @@
             </center>
         </div>
     </div>
-</div>
+</div> -->
 
 
-<div class="footer styledfoot">
+<!-- <div class="footer styledfoot">
     <footer>
         <br/>
         © ETH Block Explorer 2017 | <a target="_blank" href="http://github.com/sthnaqvi/explorer" >Fork me on GitHub</a>
@@ -117,11 +301,12 @@
         Helpful Links: ethereum.org | gdax.com | coinbase.com
         <br/>
     </footer>
-</div>
+</div> -->
 <script>
     //begin AltSheets
     $("#modaltext").text(geth_command);
     // end AltSheets
+  
 </script>
 </body>
 </html>

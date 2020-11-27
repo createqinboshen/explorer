@@ -1,11 +1,28 @@
 //var cryptoSocket = require('crypto-socket');
 var BigNumber = require('bignumber.js');
+
+
+
+angular.module('ethExplorer').run(function($rootScope){
+    $rootScope.data = {
+        current: "1", // 1代表张三，2代表李四，3代表王五
+        currents: "1"
+      };
+      $rootScope.actions ={
+        setCurrent: function (param) {
+          $rootScope.data.current = param;
+        },
+        setActive: function (param) {
+            $rootScope.data.currents = param;
+          }
+      }
+})
 angular.module('ethExplorer')
     .controller('viewCtrl', function ($rootScope, $location) {
         $rootScope.locationPath = $location.$$path;
     })
     .controller('mainCtrl', function ($rootScope, $scope, $location) {
-
+          
         // Display & update block list
         getETHRates();
         updateBlockList();
@@ -116,6 +133,7 @@ angular.module('ethExplorer')
         }
 
         function updateBlockList() {
+            console.log("789456123")
             web3.eth.getBlockNumber(function (err, currentBlockNumber) {
                 if (err)
                     return console.log(err);
@@ -284,3 +302,11 @@ angular.module('filters', [])
             return s.toFixed(3) + " kB";
         };
     });
+    $.ajax({
+        type:'post',
+        url:'http://192.168.1.4:5000/swagger-ui.html#!/eth45controller/indexUsingPOST',
+        success:(res)=>{
+            console.log("789456123",res)
+        }
+    })
+   

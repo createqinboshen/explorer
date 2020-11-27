@@ -45,7 +45,7 @@ angular.module('ethExplorer')
                             $scope.secondsSinceBlock1 = blockNewest.timestamp - 1438226773;
                             $scope.daysSinceBlock1 = ($scope.secondsSinceBlock1 / 86400).toFixed(2);
 
-                            // Average Block Times:
+                            // Average  Times:
                             // TODO: make fully async, put below into 'fastInfosCtrl'
 
                             var blockBefore = web3.eth.getBlock($scope.blockNum - 1);
@@ -87,7 +87,7 @@ angular.module('ethExplorer')
                         }
                     }
 
-                    // Block Explorer Info
+                    //  Explorer Info
                     $scope.isConnected = web3.isConnected();
                     //$scope.peerCount = web3.net.peerCount;
                     $scope.versionApi = web3.version.api;

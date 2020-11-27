@@ -3,6 +3,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif !important;
+    background-color: #F8F8F8 !important;
 }
 
 .menu {
@@ -161,3 +162,189 @@ input.searchimain {
 #connectwarning-dialog {
     width: 900px;
 }
+
+
+
+
+  .head{
+      height: 100px;
+      width: 100%;
+      line-height: 100px;
+      background-color: #0054E5;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+  }
+  .labelhead{
+      background-color: #FFFFFF;
+      height: 50px;
+      width: 100%;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      margin-top: -22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+  }
+  .labelhead span{
+      color: #999999;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      border-bottom: 1px solid white;
+  }
+  .active{
+        color: #0054E5 !important;
+        border-bottom:1px solid #0054E5 !important;
+  }
+  .cardbox{
+    padding: 20px 23px;   
+  }
+  .card{
+    float: left;
+    width: 47.5%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 6px 0px rgba(129,129,129,0.16); 
+    text-align: center;
+    padding-top: 16px;
+    margin-bottom: 23px;
+  }
+  .card img{
+      width: 40px;
+  }
+  .name{
+      color: #333333;
+      font-size: 12px;
+      margin-top: 13px;
+  }
+  .num{
+      color: #0054E5;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 17px;
+  }
+  .card:nth-child(odd){
+      margin-right: 5%;
+  }
+  .homefoot{
+      background-color: #FFFFFF;
+      height: 215px;
+      padding:0 23px;
+
+  }
+  .labelnav{
+      border-bottom: 1px solid #F2F2F2;
+      color: #999999;
+      font-size: 14px;
+      padding-top:22px;
+      /* padding-bottom: 11px; */
+  }
+  .labelnav>span:last-child{
+      margin-left: 50px;
+  }
+  .labelnav>span{
+      padding: 0 10px;
+      display: inline-block;
+      height: 30px;
+     
+  }
+  .labactive{
+      color: #0054E5;
+      border-bottom:1px solid #0054E5;
+  }
+  
+  .tongzheng{
+      padding: 0 23px;
+  }
+  .search{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    margin-top: 18px;
+    height: 43px;
+   }
+   .search img{
+       width:20px;
+       height: 20px;
+       margin: 0 8px;
+   }
+   .search input{
+       border: none;
+       outline: none;
+       width: 100%;
+   }
+   .confirm{
+       width: 18%;
+       height: 100%;
+       background-color: #0054E5;
+       color: #FFFFFF;
+       font-size: 13px;
+       text-align: center;
+       border: none;
+       outline: none;
+   }
+   .tongcard{
+       margin-top: 18px;
+        width: 100%;
+        height: 350px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 6px 6px 0px rgba(129,129,129,0.16); 
+        overflow: scroll;
+   }
+   .cardli{
+       display: flex;
+        align-items: center;
+        padding: 15px 23px;
+        border-bottom: 1px solid #E5E5E5;
+   }
+   .logo{
+       width: 31px;
+       height: 31px;
+       background-color: #0054E5;
+       border-radius: 16px;
+       margin-right: 10px;
+   }
+   .logo img{
+       width: 22px;
+   }
+   .liname,.address{
+       font-size: 12px;
+       color: #999999;
+   }
+   .liname{
+       font-weight: bold;
+       color: #333333;
+   }
+   .record{
+       padding: 10px 24px;
+   }
+   .recordcard{
+       width: 100%;
+       height: 100%;
+       background: #ffffff;
+        border-radius: 10px;
+   }
+   .recordli{
+       padding:0 12px;
+   }
+   .recordli>div{
+        color: #333333;
+        font-size: 13px;
+        padding:15px 0px;
+   }
+   
+   .recordli>div:not(:last-child){
+       border-bottom: 1px solid #E5E5E5;
+   }
+   .recordli>div:first-child{
+        font-weight: bold ;
+        padding: 0px ;
+        border: none ;
+        padding-top: 16px;
+    }

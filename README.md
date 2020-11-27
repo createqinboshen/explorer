@@ -1,6 +1,6 @@
-# ETH Block Explorer based off github.com/etherparty/explorer
+# ETH  Explorer based off github.com/etherparty/explorer
 
-![ETH Block Explorer Screenshot](https://i.imgur.com/8dPnAct.jpg)
+![ETH  Explorer Screenshot](https://i.imgur.com/8dPnAct.jpg)
 
 ## Demo
 
@@ -37,7 +37,7 @@ Then visit http://localhost:8000 in your browser of choice after you npm start t
 
 ## Updates since original etherpaty/explorer base:
 
-- Regular Expressions completed for Addresses, Block #s, and Transacions IDs (aka Search works great)
+- Regular Expressions completed for Addresses,  #s, and Transacions IDs (aka Search works great)
 - The theme is based off Bootstrap V3 for responsive design.
 - You can easily change from a cosmo or light theme utilizing https://bootswatch.com
 - There is a basic API implemented now as well as well as a Ethereum Blockchain Information page
@@ -46,7 +46,7 @@ Then visit http://localhost:8000 in your browser of choice after you npm start t
 - Address Pages are integrated with Shapeshift to easily send a payment to an address.
 - Responsive design
 - Fontawesome Icons
-- Block Time Averages
+-  Time Averages
 - Gas Prices/Limits
 - Total/Current Difficulty
 - Realtime latest blocks and recent transactions
