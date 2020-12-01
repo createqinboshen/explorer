@@ -160,9 +160,9 @@
     <div class="tongzheng" ng-if="data.current == 2">
         <div class="search">
             <img src="./assets/img/search.png"/>
-            <input type="text" placeholder="请输入智能合约地址或名称"/>
+            <input ng-model="inputtext" type="text" placeholder="请输入智能合约地址或名称"/>
             <img src="./assets/img/del.png"/>
-            <button type="button" class="confirm">
+            <button ng-click="actions.setSearch(inputtext)" type="button" class="confirm">
                 确定
             </button>
         </div>

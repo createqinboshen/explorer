@@ -14,7 +14,35 @@ angular.module('ethExplorer').run(function($rootScope){
         },
         setActive: function (param) {
             $rootScope.data.currents = param;
-          }
+          },
+        setSearch: function (param){
+            console.log("78945613",param)
+            if(param == undefined){
+                $.ajax({
+                    type:'get',
+                    url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=',
+                    success:(res)=>{
+                        console.log("列表",res.data.data)
+                        if(res.code ==1){
+                           
+                            $scope.tonglist = res.data.data;
+                        }
+                    }
+                })
+            }else{
+                $.ajax({
+                    type:'get',
+                    url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name='+param,
+                    success:(res)=>{
+                        console.log("列表",res.data.data)
+                        if(res.code ==1){
+                           
+                            $scope.tonglist = res.data.data;
+                        }
+                    }
+                })
+            }
+        }
       }
 })
 angular.module('ethExplorer')
@@ -26,7 +54,6 @@ angular.module('ethExplorer')
             type:'post',
             url:'http://192.168.1.4:5000/eth/index',
             success:(res)=>{
-                console.log("789456123",res)
                 if(res.code ==0){
                     $scope.obj  = res.data;
                 }
@@ -44,7 +71,7 @@ angular.module('ethExplorer')
         })
         $.ajax({
             type:'get',
-            url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=""',
+            url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=',
             success:(res)=>{
                 console.log("列表",res.data.data)
                 if(res.code ==1){
@@ -60,7 +87,6 @@ angular.module('ethExplorer')
                 console.log("广告记录",res.data.data)
                 if(res.code ==1){
                     res.data.data.forEach((val,index) => {
-                        console.log(val,index)
                         var timestamp4 = new Date(val.created_at*1000);//直接用 new Date(时间戳) 格式转化获得当前时间
                         res.data.data[index].created_at = timestamp4.toLocaleDateString().replace(/\//g, "-") + " " + timestamp4.toTimeString().substr(0, 8);
 
