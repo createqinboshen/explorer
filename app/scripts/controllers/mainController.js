@@ -28,7 +28,7 @@ angular.module('ethExplorer').run(function($rootScope){
                            
                             var ary = res.data.data
                             $rootScope.$apply(function(ary){
-                                $rootScope.tonglist =[]
+                                $rootScope.data.tonglist =[]
                             });
                         }
                     }
@@ -43,7 +43,7 @@ angular.module('ethExplorer').run(function($rootScope){
                            
                            var ary = res.data.data
                             $rootScope.$apply(function(ary){
-                                $rootScope.tonglist =[]
+                                $rootScope.data.tonglist =[]
                             });
                         }
                     }
@@ -76,17 +76,17 @@ angular.module('ethExplorer')
                 }
             }
         })
-        $.ajax({
-            type:'get',
-            url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=',
-            success:(res)=>{
-                console.log("列表",res.data.data)
-                if(res.code ==1){
+        // $.ajax({
+        //     type:'get',
+        //     url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=',
+        //     success:(res)=>{
+        //         console.log("列表",res.data.data)
+        //         if(res.code ==1){
                    
-                    $scope.tonglist = res.data.data;
-                }
-            }
-        })
+        //             $scope.tonglist = res.data.data;
+        //         }
+        //     }
+        // })
         $.ajax({
             type:'get',
             url:'http://partner.api.xmublockchain.com/api/browser/browserAdvertList?page=1',
