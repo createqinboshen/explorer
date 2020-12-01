@@ -9,6 +9,17 @@ angular.module('ethExplorer').run(function($rootScope){
         currents: "1",
         tonglist:[]
       };
+      $.ajax({
+        type:'get',
+        url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=',
+        success:(res)=>{
+            console.log("列表",res.data.data)
+            if(res.code ==1){
+               
+                $rootScope.data.tonglist = res.data.data;
+            }
+        }
+    })
       $rootScope.actions ={
         setCurrent: function (param) {
           $rootScope.data.current = param;
@@ -25,11 +36,7 @@ angular.module('ethExplorer').run(function($rootScope){
                     success:(res)=>{
                         console.log("列表",res.data.data)
                         if(res.code ==1){
-                           
-                            var ary = res.data.data
-                            $rootScope.$apply(function(ary){
-                                $rootScope.data.tonglist =[]
-                            });
+                            $rootScope.data.tonglist =res.data.data
                         }
                     }
                 })
@@ -38,13 +45,12 @@ angular.module('ethExplorer').run(function($rootScope){
                     type:'get',
                     url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name='+param,
                     success:(res)=>{
-                        console.log("列表",res.data.data)
+                       
                         if(res.code ==1){
                            
-                           var ary = res.data.data
-                            $rootScope.$apply(function(ary){
-                                $rootScope.data.tonglist =[]
-                            });
+                        //    var ary = res.data.data
+                        
+                           $rootScope.data.tonglist =res.data.data
                         }
                     }
                 })
