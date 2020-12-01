@@ -17,7 +17,7 @@ angular.module('ethExplorer').run(function($rootScope){
             $rootScope.data.currents = param;
           },
         setSearch: function ( param){
-            console.log("78945613",$scope)
+            console.log("78945613",$rootScope)
             if(param == undefined){
                 $.ajax({
                     type:'get',
@@ -27,8 +27,8 @@ angular.module('ethExplorer').run(function($rootScope){
                         if(res.code ==1){
                            
                             var ary = res.data.data
-                            $scope.$apply(function(ary){
-                                $scope.tonglist =[]
+                            $rootScope.$apply(function(ary){
+                                $rootScope.tonglist =[]
                             });
                         }
                     }
@@ -42,8 +42,8 @@ angular.module('ethExplorer').run(function($rootScope){
                         if(res.code ==1){
                            
                            var ary = res.data.data
-                            $scope.$apply(function(ary){
-                                $scope.tonglist =[]
+                            $rootScope.$apply(function(ary){
+                                $rootScope.tonglist =[]
                             });
                         }
                     }
