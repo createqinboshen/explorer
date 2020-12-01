@@ -304,14 +304,20 @@ input.searchimain {
         border-bottom: 1px solid #E5E5E5;
    }
    .logo{
-       width: 31px;
-       height: 31px;
+       width: 32px;
+       height: 32px;
        background-color: #0054E5;
        border-radius: 16px;
        margin-right: 10px;
+       text-align: center;
+       line-height: 28px;
    }
    .logo img{
        width: 22px;
+   }
+   .overlog{
+       width: 85%;
+       overflow: hidden;
    }
    .liname,.address{
        font-size: 12px;
@@ -347,4 +353,8 @@ input.searchimain {
         padding: 0px ;
         border: none ;
         padding-top: 16px;
+        overflow: hidden;
+    }
+    .recordli>div:last-child{
+        overflow: hidden;
     }

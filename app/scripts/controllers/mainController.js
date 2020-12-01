@@ -22,21 +22,69 @@ angular.module('ethExplorer')
         $rootScope.locationPath = $location.$$path;
     })
     .controller('mainCtrl', function ($rootScope, $scope, $location) {
-          
+        $.ajax({
+            type:'post',
+            url:'http://192.168.1.4:5000/eth/index',
+            success:(res)=>{
+                console.log("789456123",res)
+                if(res.code ==0){
+                    $scope.obj  = res.data;
+                }
+            }
+        })
+        $.ajax({
+            type:'get',
+            url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralTotal',
+            success:(res)=>{
+                console.log("通证",res)
+                if(res.code ==1){
+                    $scope.tong  = res.data;
+                }
+            }
+        })
+        $.ajax({
+            type:'get',
+            url:'http://partner.api.xmublockchain.com/api/browser/browserGeneralList?page=1&name=""',
+            success:(res)=>{
+                console.log("列表",res.data.data)
+                if(res.code ==1){
+                   
+                    $scope.tonglist = res.data.data;
+                }
+            }
+        })
+        $.ajax({
+            type:'get',
+            url:'http://partner.api.xmublockchain.com/api/browser/browserAdvertList?page=1',
+            success:(res)=>{
+                console.log("广告记录",res.data.data)
+                if(res.code ==1){
+                    res.data.data.forEach((val,index) => {
+                        console.log(val,index)
+                        var timestamp4 = new Date(val.created_at*1000);//直接用 new Date(时间戳) 格式转化获得当前时间
+                        res.data.data[index].created_at = timestamp4.toLocaleDateString().replace(/\//g, "-") + " " + timestamp4.toTimeString().substr(0, 8);
+
+                    });
+                    $scope.record  = res.data.data;
+                }
+            }
+        })
+      
+        
         // Display & update block list
-        getETHRates();
+        // getETHRates();
         updateBlockList();
         updateTXList();
         updateStats();
-        getHashrate();
+        // getHashrate();
 
         web3.eth.filter("latest", function (error, result) {
             if (!error) {
-                getETHRates();
+                // getETHRates();
                 updateBlockList();
                 updateTXList();
                 updateStats();
-                getHashrate();
+                // getHashrate();
                 $scope.$apply();
             }
         });
@@ -70,30 +118,30 @@ angular.module('ethExplorer')
         }
 
 
-        function getHashrate() {
-            $.getJSON("https://www.etherchain.org/api/miningEstimator", function (json) {
-                var hr = json.hashrate;
-                $scope.hashrate = hr;
-            });
-        }
+        // function getHashrate() {
+        //     $.getJSON("https://www.etherchain.org/api/miningEstimator", function (json) {
+        //         var hr = json.hashrate;
+        //         $scope.hashrate = hr;
+        //     });
+        // }
 
-        function getETHRates() {
-            $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function (json) {
-                var price = Number(json[0].price_usd);
-                $scope.ethprice = "$" + price.toFixed(2);
-            });
+        // function getETHRates() {
+        //     $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function (json) {
+        //         var price = Number(json[0].price_usd);
+        //         $scope.ethprice = "$" + price.toFixed(2);
+        //     });
 
-            $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function (json) {
-                var btcprice = Number(json[0].price_btc);
-                $scope.ethbtcprice = btcprice;
-            });
+        //     $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function (json) {
+        //         var btcprice = Number(json[0].price_btc);
+        //         $scope.ethbtcprice = btcprice;
+        //     });
 
-            $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function (json) {
-                var cap = Number(json[0].market_cap_usd);
-                //console.log("Current ETH Market Cap: " + cap);
-                $scope.ethmarketcap = cap;
-            });
-        }
+        //     $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function (json) {
+        //         var cap = Number(json[0].market_cap_usd);
+        //         //console.log("Current ETH Market Cap: " + cap);
+        //         $scope.ethmarketcap = cap;
+        //     });
+        // }
 
         function updateTXList() {
             web3.eth.getBlockNumber(function (err, currentBlockNumber) {
@@ -302,11 +350,5 @@ angular.module('filters', [])
             return s.toFixed(3) + " kB";
         };
     });
-    $.ajax({
-        type:'post',
-        url:'http://192.168.1.4:5000/swagger-ui.html#!/eth45controller/indexUsingPOST',
-        success:(res)=>{
-            console.log("789456123",res)
-        }
-    })
+   
    

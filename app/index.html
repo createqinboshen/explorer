@@ -30,32 +30,33 @@
         <span ng-class="{ 'active' : data.current == 2 }" ng-click="actions.setCurrent(2)">通证</span>
         <span ng-class="{ 'active' : data.current == 3 }" ng-click="actions.setCurrent(3)">广告记录</span>
     </div>
+    <div ng-controller="mainCtrl">
     <div ng-if="data.current == 1">
         <div class="cardbox">
-            <div class="card">
+            <!-- <div class="card">
                 <img src="./assets/img/new.png"/>
                 <div class="name">最新区块</div>
-                <div class="num">24,904,423</div>
-            </div>
+                <div class="num"> 24,904,423</div>
+            </div> -->
             <div class="card">
                 <img src="./assets/img/trade.png"/>
                 <div class="name">交易次数</div>
-                <div class="num">24,904,423</div>
+                <div class="num">{{ obj.transactionCount }}</div>
             </div>
             <div class="card">
                 <img src="./assets/img/jiedian.png"/>
                 <div class="name">节点总数</div>
-                <div class="num">24,904,423</div>
+                <div class="num"> {{ obj.peerCount }}</div>
             </div>
             <div class="card">
                 <img src="./assets/img/user.png"/>
                 <div class="name">账户总数</div>
-                <div class="num">24,904,423</div>
+                <div class="num">{{ obj.walletCount  }}</div>
             </div>
             <div class="card">
                 <img src="./assets/img/tongzheng.png"/>
                 <div class="name">通证总数</div>
-                <div class="num">24,904,423</div>
+                <div class="num">{{tong}}</div>
             </div>
             <div style="clear:both;"></div>
         </div>
@@ -166,7 +167,16 @@
             </button>
         </div>
         <div class="tongcard">
-            <div class="cardli">
+            <div ng-repeat="li in tonglist" class="cardli">
+                <div class="logo">
+                    <img src={{li.icon}}/>
+                </div>
+                <div class="overlog">
+                    <div class="liname">{{li.currency}}</div>
+                    <div class="address">智能合约地址：{{li.contract_address}}</div>
+                </div>
+            </div>
+            <!-- <div class="cardli">
                 <div class="logo">
                     <img src="./assets/img/trade.png"/>
                 </div>
@@ -174,41 +184,24 @@
                     <div class="liname">HC</div>
                     <div class="address">智能合约地址：fduetrfeeu97655jdh</div>
                 </div>
-            </div>
-            <div class="cardli">
-                <div class="logo">
-                    <img src="./assets/img/trade.png"/>
-                </div>
-                <div>
-                    <div class="liname">HC</div>
-                    <div class="address">智能合约地址：fduetrfeeu97655jdh</div>
-                </div>
-            </div>
+            </div> -->
             
         </div>
     </div>
     <div class="record" ng-if="data.current == 3">
          <div class="recordcard">
-            <div class="recordli">
-                <div>HASH值：</div>
-                <div>时间：</div>
-                <div>合同ID：</div>
-                <div>企业ID：</div>
-                <div>媒体ID：</div>
-                <div>描述：</div>
-                <div>广告分发记录：</div>
-            </div>
-            <div class="recordli">
-                <div>HASH值：</div>
-                <div>时间：</div>
-                <div>合同ID：</div>
-                <div>企业ID：</div>
-                <div>媒体ID：</div>
-                <div>描述：</div>
-                <div>广告分发记录：</div>
+            <div ng-repeat="li in record" class="recordli">
+                <div>HASH值：{{li.pdf_txid}}</div>
+                <div>时间：{{li.created_at}}</div>
+                <div>合同ID：{{li.id}}</div>
+                <div>企业ID：{{li.company_id}}</div>
+                <div>媒体ID：{{li.advert_id}}</div>
+                <div>描述：{{li.agreement_name}}</div>
+                <div>广告分发记录：{{li.orderpdf.pdf}}</div>
             </div>
          </div>
     </div>
+</div>
 <!-- <nav class="navbar navbar-dark navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -239,9 +232,9 @@
 </nav> -->
 
 
-<div ng-view>
+<!-- <div ng-view>
     <section ng-controller="viewCtrl"></section>
-</div>
+</div> -->
 
 <!--Libs-->
 <script src="https://use.fontawesome.com/9376283190.js"></script>
