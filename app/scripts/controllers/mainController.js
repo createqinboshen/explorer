@@ -6,7 +6,8 @@ var BigNumber = require('bignumber.js');
 angular.module('ethExplorer').run(function($rootScope){
     $rootScope.data = {
         current: "1", // 1代表张三，2代表李四，3代表王五
-        currents: "1"
+        currents: "1",
+        tonglist:[]
       };
       $rootScope.actions ={
         setCurrent: function (param) {
@@ -15,8 +16,8 @@ angular.module('ethExplorer').run(function($rootScope){
         setActive: function (param) {
             $rootScope.data.currents = param;
           },
-        setSearch: function (param){
-            console.log("78945613",param)
+        setSearch: function ( param){
+            console.log("78945613",$scope)
             if(param == undefined){
                 $.ajax({
                     type:'get',
@@ -25,7 +26,10 @@ angular.module('ethExplorer').run(function($rootScope){
                         console.log("列表",res.data.data)
                         if(res.code ==1){
                            
-                            $scope.tonglist = res.data.data;
+                            var ary = res.data.data
+                            $scope.$apply(function(ary){
+                                $scope.tonglist =[]
+                            });
                         }
                     }
                 })
@@ -37,7 +41,10 @@ angular.module('ethExplorer').run(function($rootScope){
                         console.log("列表",res.data.data)
                         if(res.code ==1){
                            
-                            $scope.tonglist = res.data.data;
+                           var ary = res.data.data
+                            $scope.$apply(function(ary){
+                                $scope.tonglist =[]
+                            });
                         }
                     }
                 })
@@ -95,7 +102,7 @@ angular.module('ethExplorer')
                 }
             }
         })
-      
+        
         
         // Display & update block list
         // getETHRates();
